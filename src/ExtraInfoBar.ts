@@ -96,7 +96,7 @@ class ExtraInfoBar extends Plugin {
             : player._skills._skills[skillId];
 
         const boostAmount = Math.abs(skillObj._currentLevel - skillObj._level);
-        if (boostAmount > 0) {
+        if (boostAmount > 0 || skillId > 0) {
             let expiresAt;
             const existingBoost = this.activeSkillBoosts[skillId];
             const isNewItem =
@@ -176,7 +176,6 @@ class ExtraInfoBar extends Plugin {
 
     GameLoop_update(...args) {
         if (this.infoBarUI && this.settings.enable.value) {
-            this.log("hello");
             const player = this.gameHooks.EntityManager.Instance._mainPlayer;
             const ammoSlot = player._loadout._items[9];
             if (player && ammoSlot) {
